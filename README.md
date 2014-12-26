@@ -30,6 +30,10 @@ This option is if you want to install all applications inside of the .json file(
 #### Exit
 Exits the python script.
 
+Proper JSON file handling
+----------
+Please look at the [Wiki](https://github.com/Mozzo1000/InstPakg/wiki) for a detailed explanation.
+
 License
 -------
 InstPakg is is distributed under the [MIT License](http://opensource.org/licenses/MIT).  
