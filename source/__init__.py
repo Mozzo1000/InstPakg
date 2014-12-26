@@ -1,7 +1,7 @@
 import json, subprocess, curses, sys, os, glob
 from menu import cmenu
 yes = set(["yes", "y"])
-DEFAULT_JSON = subprocess.call("wget ----", shell=True)
+DEFAULT_JSON = "DEFAULT.json"
 JSON_LOCATION = ""
 
 def bulkInstall():
@@ -69,7 +69,7 @@ def main():
 		global JSON_LOCATION
 		JSON_LOCATION = home + "/.instpakg"
 		print(JSON_LOCATION + "  "+ DEFAULT_JSON)
-		subprocess.call("cp " + DEFAULT_JSON + " " + JSON_LOCATION, shell=True)
+		subprocess.call("wget -O " + JSON_LOCATION + " https://github.com/Mozzo1000/InstPakg/blob/master/source/DEFAULT.json", shell=True)
 	else:
 		global JSON_LOCATION
 		JSON_LOCATION = home + "/.instpakg"
