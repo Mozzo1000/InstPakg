@@ -43,7 +43,7 @@ def promptInstall():
 	json_data.close()
 
 def exit():
-	#clear()
+	clear()
 	sys.exit(1)
 def clear():
 	subprocess.call("clear", shell=True)
@@ -69,7 +69,7 @@ def main():
 		global JSON_LOCATION
 		JSON_LOCATION = home + "/.instpakg"
 		print(JSON_LOCATION + "  "+ DEFAULT_JSON)
-		subprocess.call("wget -O " + JSON_LOCATION + " https://github.com/Mozzo1000/InstPakg/blob/master/source/DEFAULT.json", shell=True)
+		subprocess.call("wget -O " + JSON_LOCATION + "/DEFAULT.json https://github.com/Mozzo1000/InstPakg/raw/master/source/DEFAULT.json", shell=True)
 	else:
 		global JSON_LOCATION
 		JSON_LOCATION = home + "/.instpakg"
