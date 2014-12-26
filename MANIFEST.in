@@ -1,0 +1,3 @@
+include DESCRIPTION.rst
+include source/menu.py
+include source/DEFAULT.json

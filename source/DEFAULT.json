@@ -1,0 +1,22 @@
+{
+	"install": [
+		{"app": "google-chrome-stable", "repo": "", "command": "wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - && sudo sh -c 'echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list.d/google.list'"},
+		{"app": "firefox", "repo": "", "command": ""},
+		{"app": "opera-stable", "repo": "", "command": ""},
+		{"app": "grive-tools", "repo": "ppa:thefanclub/grive-tools", "command": ""},
+		{"app": "keepassx", "repo": "ppa:keepassx/daily", "command": ""},
+		{"app": "variety", "repo": "ppa:peterlevi/ppa", "command": "" },
+		{"app": "synaptic", "repo": "", "command": ""},
+		{"app": "virtualbox", "repo": "", "command": ""},
+		{"app": "wine", "repo": "", "command": ""},
+		{"app": "spotify-client", "repo": "'deb http://repository.spotify.com stable non-free'", "command": "sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59"},
+		{"app": "unity-tweak-tool", "repo": "", "command": ""},
+		{"app": "deluge", "repo": "", "command": ""},
+		{"app": "openjdk-7-jdk", "repo": "", "command": ""},
+		{"app": "eclipse-platform", "repo": "", "command": ""},
+		{"app": "gimp", "repo": "", "command": ""},
+		{"app": "qemu-kvm", "repo": "", "command": ""},
+		{"app": "qemu-kvm", "repo": "", "command": ""}
+
+	]
+}
