@@ -24,13 +24,13 @@ This will download a "master.zip" in your working directory
 How to use
 ----------
 While inside ```InstPakg``` you move the selector with your up and down keyboard keys and hit enter to select the highlighted option.
-##### Install Software
+#### Install Software
 The first option "Install Software" will run you through a list of applications inside of the .json file selected(by default: DEFAULT.json), you either press ```y``` to install or ```n``` to not install.
-##### Bulk Software Installer
+#### Bulk Software Installer
 This option is if you want to install all applications inside of the .json file(by default: DEFAULT.json) without any confirmation.
-##### Select JSON file
+#### Select JSON file
 "Select JSON file" is the option for selecting a .json file in which the program will install from. All .json files are located at .instpakg folder in your home directory.
-##### Exit
+#### Exit
 Exits the python script.
 
 License
