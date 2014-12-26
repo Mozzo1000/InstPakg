@@ -8,6 +8,7 @@ InstPakg is a interactive python script were the user can easily install presele
 Supported operating systems
 ---------------------------
 **NOTE: Probably works with earlier/later versions and with other debian based distros which uses ```apt```**
+
 Ubuntu 14.04/14.10 - *WORKS & TESTED*
 
 How to install
