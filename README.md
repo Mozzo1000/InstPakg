@@ -1,8 +1,5 @@
 InstPakg
 ========
-
-What is InstPakg?
------------------
 InstPakg is a interactive python script were the user can easily install preselected applications and other software available on the Ubuntu operating system. It uses .json files located in the .instpakg folder in your home directory to install the applications listed if so selected.
 
 Supported operating systems
