@@ -5,13 +5,18 @@ What is InstPakg?
 -----------------
 InstPakg is a interactive python script were the user can easily install preselected applications and other software available on the Ubuntu operating system. It uses .json files located in the .instpakg folder in your home directory to install the applications listed if so selected.
 
+Supported operating systems
+---------------------------
+**NOTE: Probably works with earlier/later versions and with other debian based distros which uses ```apt```**
+Ubuntu 14.04/14.10 - *WORKS & TESTED*
+
 How to install
 -----------------
 First download the .zip file from the repository
 * In terminal type ```wget https://github.com/Mozzo1000/InstPakg/archive/master.zip```
-This will download a "master.zip" in your working directory(Default HOME)
-* Unzip master.zip
-* In terminal move to the InstPakg directory, ```cd InstPakg/```
+This will download a "master.zip" in your working directory
+* Unzip master.zip, ```unzip master.zip```
+* In terminal move to the unziped directory, ```cd InstPakg-master/```
 * Install the python script ```python setup.py install``` (NOTE: run as sudo)
 * In terminal type ```InstPakg``` and done! (NOTE: At first run it will download a DEFAULT.json file from github)
 
