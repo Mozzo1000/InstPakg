@@ -16,7 +16,7 @@ This will download a "master.zip" in your working directory
 * Unzip master.zip, ```unzip master.zip```
 * In terminal move to the unziped directory, ```cd InstPakg-master/```
 * Install the python script ```python setup.py install``` (NOTE: run as sudo)
-* In terminal type ```InstPakg``` and done! (NOTE: At first run it will download a DEFAULT.json file from github)
+* In terminal type ```InstPakg``` and done!
 
 How to use
 ----------
