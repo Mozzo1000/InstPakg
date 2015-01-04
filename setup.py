@@ -1,8 +1,16 @@
 from setuptools import setup, find_packages
 from codecs import open
 from os import path
+import os, subprocess, shutil
+
+home = os.getenv("HOME")
+location = home + "/.instpakg"
+if not os.path.exists(location):
+	os.makedirs(location)
+	shutil.copyfile("source/DEFAULT.json", location + "/DEFAULT.json")
 
 here = path.abspath(path.dirname(__file__))
+
 
 with open(path.join(here, 'DESCRIPTION.rst'), encoding='utf-8') as f:
     long_description = f.read()

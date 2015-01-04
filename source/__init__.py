@@ -61,15 +61,8 @@ def selectJSON():
 	
 def main():
 	home = os.getenv("HOME")
-	if not os.path.exists(home + "/.instpakg"):
-		os.makedirs(home + "/.instpakg")
-		global JSON_LOCATION
-		JSON_LOCATION = home + "/.instpakg"
-		print(JSON_LOCATION + "  "+ DEFAULT_JSON)
-		subprocess.call("wget -O " + JSON_LOCATION + "/DEFAULT.json https://github.com/Mozzo1000/InstPakg/raw/master/source/DEFAULT.json", shell=True)
-	else:
-		global JSON_LOCATION
-		JSON_LOCATION = home + "/.instpakg"
+	global JSON_LOCATION
+	JSON_LOCATION = home + "/.instpakg"
 	try:
 		list = [{ "Install software": promptInstall }, {"Bulk Software Install": bulkInstall}, {"Select JSON file": selectJSON}, {"Exit": GlobalUtils.exit}]
 		menu = cmenu(list, "InstPakg Menu")
