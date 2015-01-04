@@ -2,8 +2,9 @@ import json, subprocess, os, glob, GlobalUtils
 from JsonUtil import *
 from menu import cmenu
 yes = set(["yes", "y"])
-DEFAULT_JSON = "DEFAULT.json"
-JSON_LOCATION = ""
+home = os.getenv("HOME")
+JSON_LOCATION = home + "/.instpakg"
+DEFAULT_JSON = JSON_LOCATION + "/DEFAULT.json"
 jsonInstall = ""
 
 def initJson():
@@ -60,9 +61,6 @@ def selectJSON():
 	DEFAULT_JSON = files[int(choice)]
 	
 def main():
-	home = os.getenv("HOME")
-	global JSON_LOCATION
-	JSON_LOCATION = home + "/.instpakg"
 	try:
 		list = [{ "Install software": promptInstall }, {"Bulk Software Install": bulkInstall}, {"Select JSON file": selectJSON}, {"Exit": GlobalUtils.exit}]
 		menu = cmenu(list, "InstPakg Menu")
