@@ -1,6 +1,7 @@
 import json
 
 data = None
+json_data = None
 
 def load_json(json_file):
 	global data

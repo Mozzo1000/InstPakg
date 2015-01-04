@@ -4,18 +4,23 @@ from menu import cmenu
 yes = set(["yes", "y"])
 DEFAULT_JSON = "DEFAULT.json"
 JSON_LOCATION = ""
+jsonInstall = ""
+
+def initJson():
+	global jsonInstall
+	load_json(DEFAULT_JSON)
+	jsonInstall = get_json("install")
 
 def bulkInstall():
-	json_data = open(DEFAULT_JSON)
-	data = json.load(json_data)
-	root = data["install"]
-	for item in root:
+	initJson()
+	for item in jsonInstall:
 		subprocess.call("sudo add-apt-repository " + item["repo"] + " -y", shell=True)
 	subprocess.call("sudo apt-get update", shell=True)
 	for item in root:
 		if item["command"]:
 			subprocess.call(item["command"], shell=True)
-		subprocess.call("sudo apt-get install -y " + item["app"], shell=True) 
+		subprocess.call("sudo apt-get install -y " + item["app"], shell=True)
+	close_json()
 
 def aptInstall(program, repo, command):
 	global yes
@@ -34,10 +39,8 @@ def aptInstall(program, repo, command):
 
 def promptInstall():
 	GlobalUtils.clear()
-	load_json(DEFAULT_JSON)
-	
-	root = get_json("install")
-	for item in root:
+	initJson()
+	for item in jsonInstall:
 		choice = raw_input("Do you want to install " + item["app"] + " (y/n)").lower()
 		if choice in yes:
 			aptInstall(item["app"], item["repo"], item["command"])
@@ -56,7 +59,6 @@ def selectJSON():
 	print(files[int(choice)])
 	DEFAULT_JSON = files[int(choice)]
 	
-
 def main():
 	home = os.getenv("HOME")
 	if not os.path.exists(home + "/.instpakg"):
