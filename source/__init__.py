@@ -1,4 +1,4 @@
-import json, subprocess, sys, os, glob
+import json, subprocess, os, glob, GlobalUtils
 from JsonUtil import *
 from menu import cmenu
 yes = set(["yes", "y"])
@@ -33,7 +33,7 @@ def aptInstall(program, repo, command):
 		subprocess.call("sudo apt-get update && sudo apt-get install " + program, shell=True)
 
 def promptInstall():
-	clear()
+	GlobalUtils.clear()
 	load_json(DEFAULT_JSON)
 	
 	root = get_json("install")
@@ -46,7 +46,7 @@ def promptInstall():
 def selectJSON():
 	global DEFAULT_JSON
 	num = -1
-	clear()
+	GlobalUtils.clear()
 	for file in os.listdir(JSON_LOCATION):
 		if file.endswith(".json"):
 			files = glob.glob(JSON_LOCATION+"/*.json")
@@ -69,7 +69,7 @@ def main():
 		global JSON_LOCATION
 		JSON_LOCATION = home + "/.instpakg"
 	try:
-		list = [{ "Install software": promptInstall }, {"Bulk Software Install": bulkInstall}, {"Select JSON file": selectJSON}, {"Exit": exit}]
+		list = [{ "Install software": promptInstall }, {"Bulk Software Install": bulkInstall}, {"Select JSON file": selectJSON}, {"Exit": GlobalUtils.exit}]
 		menu = cmenu(list, "InstPakg Menu")
 		menu.display()
 	except SystemExit:

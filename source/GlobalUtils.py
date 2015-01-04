@@ -1,3 +1,5 @@
+import subprocess, sys
+
 def exit():
 	clear()
 	sys.exit(1)
