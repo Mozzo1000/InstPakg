@@ -1,4 +1,5 @@
-import json, subprocess, curses, sys, os, glob
+import json, subprocess, sys, os, glob
+from JsonUtil import *
 from menu import cmenu
 yes = set(["yes", "y"])
 DEFAULT_JSON = "DEFAULT.json"
@@ -33,20 +34,14 @@ def aptInstall(program, repo, command):
 
 def promptInstall():
 	clear()
-	json_data = open(DEFAULT_JSON)
-	data = json.load(json_data)
-	root = data["install"]
+	load_json(DEFAULT_JSON)
+	
+	root = get_json("install")
 	for item in root:
 		choice = raw_input("Do you want to install " + item["app"] + " (y/n)").lower()
 		if choice in yes:
 			aptInstall(item["app"], item["repo"], item["command"])
-	json_data.close()
-
-def exit():
-	clear()
-	sys.exit(1)
-def clear():
-	subprocess.call("clear", shell=True)
+	close_json()
 
 def selectJSON():
 	global DEFAULT_JSON
