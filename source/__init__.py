@@ -6,6 +6,8 @@ home = os.getenv("HOME")
 JSON_LOCATION = home + "/.instpakg"
 DEFAULT_JSON = JSON_LOCATION + "/DEFAULT.json"
 jsonInstall = ""
+markedInstall = []
+markedRepo = []
 
 def initJson():
 	global jsonInstall
@@ -23,7 +25,7 @@ def bulkInstall():
 		subprocess.call("sudo apt-get install -y " + item["app"], shell=True)
 	close_json()
 
-def aptInstall(program, repo, command):
+"""def aptInstall(program, repo, command):
 	global yes
 	if not repo and not command:
 		subprocess.call("sudo apt-get install " + program, shell=True)
@@ -37,14 +39,27 @@ def aptInstall(program, repo, command):
 	elif command:
 		subprocess.call(command, shell=True)
 		subprocess.call("sudo apt-get update && sudo apt-get install " + program, shell=True)
+"""
+
+def aptInstall(program, repo, command):
+	global yes
+	markedInstall.append(program)
 
 def promptInstall():
 	GlobalUtils.clear()
 	initJson()
 	for item in jsonInstall:
-		choice = raw_input("Do you want to install " + item["app"] + " (y/n)").lower()
+		print(item["app"] + "\n-----------------\nINSERT DESCRIPTION!\n")
+		
+		choice = raw_input("Do you want to mark\033[1m " + item["app"] + "\033[0m for install? (y/n)").lower()
 		if choice in yes:
 			aptInstall(item["app"], item["repo"], item["command"])
+
+	choice = raw_input("Are you sure you want to install the following programs? - " + str(markedInstall))
+	if choice in yes:
+		for item in markedInstall:
+			subprocess.call("sudo apt-get install " + item, shell=True)
+		print("Installing EVERYTHING!")
 	close_json()
 
 def selectJSON():
