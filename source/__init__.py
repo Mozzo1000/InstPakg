@@ -1,4 +1,4 @@
-import json, subprocess, os, glob, GlobalUtils
+import subprocess, os, glob, GlobalUtils, InstallUtil
 from JsonUtil import *
 from menu import cmenu
 yes = set(["yes", "y"])
@@ -27,7 +27,7 @@ def bulkInstall():
 		subprocess.call("sudo apt-get install -y " + item["app"], shell=True)
 	close_json()
 
-def install(program, repo, command):
+def mark(program, repo, command):
 	markedInstall.append(program)
 	if repo:
 		choice = raw_input("Do you want to add ppa " + repo + " (Required to install " + program +") (y/n)").lower()
@@ -52,24 +52,24 @@ def promptInstall():
 		
 		choice = raw_input("Do you want to mark\033[1m " + item["app"] + "\033[0m for install? (y/n)").lower()
 		if choice in yes:
-			install(item["app"], item["repo"], item["command"])
+			mark(item["app"], item["repo"], item["command"])
 	if markedCommand:
 		choice = raw_input("The following code will now run, are you sure (y/n) \n" + str(markedCommand)).lower()
 		if choice in yes:
 			for item in markedCommand:
-				subprocess.call(item, shell=True)
+				InstallUtil.call(item)
 	if markedRepo:
 		choice = raw_input("The following repositories will be added, are you sure? (y/n)\n\033[1m" + str(markedRepo) + "\033[0m").lower()
 		if choice in yes:
 			for item in markedRepo:
-				subprocess.call("sudo add-apt-repository " + item, shell=True)
-		subprocess.call("sudo apt-get update", shell=True)
+				InstallUtil.addRepository(item)
+			InstallUtil.update()
 	else:
 		print("No external repositories are required!")
 	choice = raw_input("Are you sure you want to install the following programs? -\n " + str(markedInstall))
 	if choice in yes:
 		for item in markedInstall:
-			subprocess.call("sudo apt-get install " + item, shell=True)
+			InstallUtil.install(item)
 	close_json()
 
 def selectJSON():
