@@ -62,8 +62,8 @@ def promptInstall():
 		choice = raw_input("The following repositories will be added, are you sure? (y/n)\n\033[1m" + str(markedRepo) + "\033[0m").lower()
 		if choice in yes:
 			for item in markedRepo:
-				subprocess.call("sudo add-apt-repository " + item)
-		subprocess.call("sudo apt-get update")
+				subprocess.call("sudo add-apt-repository " + item, shell=True)
+		subprocess.call("sudo apt-get update", shell=True)
 	else:
 		print("No external repositories are required!")
 	choice = raw_input("Are you sure you want to install the following programs? -\n " + str(markedInstall))
