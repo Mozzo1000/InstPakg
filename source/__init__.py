@@ -6,8 +6,10 @@ home = os.getenv("HOME")
 JSON_LOCATION = home + "/.instpakg"
 DEFAULT_JSON = JSON_LOCATION + "/DEFAULT.json"
 jsonInstall = ""
+
 markedInstall = []
 markedRepo = []
+markedCommand = []
 
 def initJson():
 	global jsonInstall
@@ -25,26 +27,23 @@ def bulkInstall():
 		subprocess.call("sudo apt-get install -y " + item["app"], shell=True)
 	close_json()
 
-"""def aptInstall(program, repo, command):
-	global yes
-	if not repo and not command:
-		subprocess.call("sudo apt-get install " + program, shell=True)
-	elif repo:
+def install(program, repo, command):
+	markedInstall.append(program)
+	if repo:
 		choice = raw_input("Do you want to add ppa " + repo + " (Required to install " + program +") (y/n)").lower()
 		if choice in yes:
-			subprocess.call("sudo add-apt-repository " + repo + " && sudo apt-get update", shell=True)
-			subprocess.call("sudo apt-get install " + program, shell=True)
+			markedRepo.append(repo)
 		else:
 			print("Cancelled install of " + program)
+			markedInstall.remove(program)
 	elif command:
-		subprocess.call(command, shell=True)
-		subprocess.call("sudo apt-get update && sudo apt-get install " + program, shell=True)
-"""
-
-def aptInstall(program, repo, command):
-	global yes
-	markedInstall.append(program)
-
+		choice = raw_input("The following command is required in order to install " + program + "are you sure? (y/n)\n\033[1m" + command + "\033[0m").lower()
+		if choice in yes:
+			markedCommand.append(command)
+		else:
+			print("Cancelled install of " + program)
+			markedInstall.remove(program)
+		
 def promptInstall():
 	GlobalUtils.clear()
 	initJson()
@@ -53,13 +52,24 @@ def promptInstall():
 		
 		choice = raw_input("Do you want to mark\033[1m " + item["app"] + "\033[0m for install? (y/n)").lower()
 		if choice in yes:
-			aptInstall(item["app"], item["repo"], item["command"])
-
-	choice = raw_input("Are you sure you want to install the following programs? - " + str(markedInstall))
+			install(item["app"], item["repo"], item["command"])
+	if markedCommand:
+		choice = raw_input("The following code will now run, are you sure (y/n) \n" + str(markedCommand)).lower()
+		if choice in yes:
+			for item in markedCommand:
+				subprocess.call(item, shell=True)
+	if markedRepo:
+		choice = raw_input("The following repositories will be added, are you sure? (y/n)\n\033[1m" + str(markedRepo) + "\033[0m").lower()
+		if choice in yes:
+			for item in markedRepo:
+				subprocess.call("sudo add-apt-repository " + item)
+		subprocess.call("sudo apt-get update")
+	else:
+		print("No external repositories are required!")
+	choice = raw_input("Are you sure you want to install the following programs? -\n " + str(markedInstall))
 	if choice in yes:
 		for item in markedInstall:
 			subprocess.call("sudo apt-get install " + item, shell=True)
-		print("Installing EVERYTHING!")
 	close_json()
 
 def selectJSON():
