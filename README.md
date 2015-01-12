@@ -7,6 +7,7 @@ Supported package managers & distributions
 **NOTE: Probably works with earlier/later versions and with distros which uses the supported package managers
 
 Ubuntu 14.04/14.10 - *WORKS & TESTED*
+
 | Package Manager | Tested distros     |
 | --------------- | ------------------ |
 | Dpkg - Apt      | Ubuntu 14.04/14.10 |
