@@ -2,11 +2,15 @@ InstPakg
 ========
 InstPakg is a interactive python script were the user can easily install preselected applications and other software available on the Ubuntu operating system. It uses .json files located in the .instpakg folder in your home directory to install the applications listed if so selected.
 
-Supported operating systems
+Supported package managers & distributions
 ---------------------------
-**NOTE: Probably works with earlier/later versions and with other debian based distros which uses ```apt```**
+**NOTE: Probably works with earlier/later versions and with distros which uses the supported package managers
 
 Ubuntu 14.04/14.10 - *WORKS & TESTED*
+| Package Manager | Tested distros     |
+| --------------- | ------------------ |
+| Dpkg - Apt      | Ubuntu 14.04/14.10 |
+| RPM - Yum       | Fedora 21          |
 
 How to install
 -----------------
