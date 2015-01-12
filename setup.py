@@ -11,6 +11,7 @@ def createConfig():
 		os.makedirs(location)
 		shutil.copyfile("source/DEFAULT.json", location + "/DEFAULT.json")
 
+createConfig()
 here = path.abspath(path.dirname(__file__))
 
 
