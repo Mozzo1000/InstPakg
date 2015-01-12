@@ -4,7 +4,7 @@ InstPakg is a interactive python script were the user can easily install presele
 
 Supported package managers & distributions
 ---------------------------
-**NOTE: Probably works with earlier/later versions and with distros which uses the supported package managers
+**NOTE: Probably works with earlier/later versions and with distros which uses the supported package managers**
 
 Ubuntu 14.04/14.10 - *WORKS & TESTED*
 
