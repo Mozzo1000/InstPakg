@@ -1,4 +1,4 @@
-import subprocess, os, glob, GlobalUtils, InstallUtil
+import subprocess, os, glob, GlobalUtils, InstallUtil, Platform
 from JsonUtil import *
 from menu import cmenu
 yes = set(["yes", "y"])
@@ -14,7 +14,10 @@ markedCommand = []
 def initJson():
 	global jsonInstall
 	load_json(DEFAULT_JSON)
-	jsonInstall = get_json("install")
+	if Platform.getPackage("apt"):
+		jsonInstall = get_json("apt")
+	elif Platform.getPackage("yum"):
+		jsonInstall = get_json("yum")
 
 def bulkInstall():
 	initJson()
