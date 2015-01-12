@@ -1,4 +1,4 @@
-import platform, time
+import platform, time, os
 
 def getDistro(pos = 0):
 	return platform.linux_distribution()[pos]
@@ -7,5 +7,9 @@ def getOS():
 def getKernel():
 	return platform.release()
 def notSupported():
-	print(getDistro() + " is not supported!")
-	time.sleep(3)
+	print("Your package manager is not supported\nList of supported package managers\nDpkg - Apt\nRPM - Yum")
+	time.sleep(1)
+def getPackage(package):
+	path = "/usr/bin/" + package
+	if os.path.exists(path):
+		return True
