@@ -1,13 +1,30 @@
 from setuptools import setup, find_packages
 from codecs import open
 from os import path
-import os, subprocess, shutil
+from source import Platform
+import os, subprocess, shutil, getpass
 
-home = os.getenv("HOME")
-location = home + "/.instpakg"
-if not os.path.exists(location):
-	os.makedirs(location)
-	shutil.copyfile("source/DEFAULT.json", location + "/DEFAULT.json")
+def createConfig():
+	print(location)
+	if not os.path.exists(location):
+		os.makedirs(location)
+		shutil.copyfile("source/DEFAULT.json", location + "/DEFAULT.json")
+
+if "Ubuntu" in Platform.getDistro():
+	location = os.getenv("HOME") + "/.instpakg"
+	createConfig()
+elif "Fedora" in Platform.getDistro():
+	location = "/home/" + getpass.getuser() + "/.instpakg"
+	createConfig()
+else:
+	location = os.getenv("HOME") + "/.instpakg"
+	location2 = "/home/" + getpass.getuser() + "/.instpakg"
+	if not os.path.exists(location) and not os.path.exists(location2):
+		os.makedirs(location)
+		os.makedirs(location2)
+		shutil.copyfile("source/DEFAULT.json", location + "/DEFAULT.json")
+		shutil.copyfile("source/DEFAULT.json", location2 + "/DEFAULT.json")
+
 
 here = path.abspath(path.dirname(__file__))
 
