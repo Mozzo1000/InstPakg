@@ -22,12 +22,12 @@ def initJson():
 def bulkInstall():
 	initJson()
 	for item in jsonInstall:
-		subprocess.call("sudo add-apt-repository " + item["repo"] + " -y", shell=True)
-	subprocess.call("sudo apt-get update", shell=True)
+		InstallUtil.forceAddRepository(item["repo"])
+	InstallUtil.update()
 	for item in root:
 		if item["command"]:
-			subprocess.call(item["command"], shell=True)
-		subprocess.call("sudo apt-get install -y " + item["app"], shell=True)
+			InstallUtil.call(item["command"])
+		InstallUtil.forceInstall(item["app"])
 	close_json()
 
 def mark(program, repo, command):

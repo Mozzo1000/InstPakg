@@ -24,3 +24,18 @@ def update():
 		notSupported()
 def call(command):
 	subprocess.call(command, shell=True)
+
+def forceInstall(program):
+	if getPackage("apt"):
+		call("sudo apt-get install -y" + program)
+	elif getPackage("yum"):
+		call("sudo yum -y install" + program)
+	else:
+		notSupported()
+def forceAddRepository(repo):
+	if getPackage("apt"):
+		call("sudo add-apt-repository -y" + repo)
+	elif getPackage("yum"):
+		call("sudo yum-config-manager --add-repo " + repo)
+	else:
+		notSupported()
