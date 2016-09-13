@@ -7,7 +7,7 @@ def getOS():
 def getKernel():
 	return platform.release()
 def notSupported():
-	print("Your package manager is not supported\nList of supported package managers\nDpkg - Apt\nRPM - Yum")
+	print("Your package manager is not supported\nList of supported package managers\nDpkg - Apt\nRPM - Yum\nRPM - DNF")
 	time.sleep(1)
 def getPackage(package):
 	path = "/usr/bin/" + package
